@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ακίνητα</title>
+
+    <link rel="stylesheet" href="../styles/listings.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <script type="text/javascript" src="../src/listings.js" defer></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">
+        <a href="index.html"><img src="../images/logo.png" alt="logo_pic" /></a>
+      </div>
+      <nav>
+        <ul class="nav_links">
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">Email</button>
+              <div class="dropdown-content">
+                <a href="#">up1066537@upnet.gr</a>
+                <a href="#">up1066504@upnet.gr</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">Τηλέφωνο Επικοινωνίας</button>
+              <div class="dropdown-content">
+                <a href="#">2106543017</a>
+                <a href="#">6976329901</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">
+                <a href="listings.html">Ακίνητα</a>
+              </button>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">
+                <a href="#">Τα δικά μου ακίνητα</a>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="navRight">
+        <ul class="loginLogout">
+          <li><a href="#">Είσοδος</a></li>
+        </ul>
+        <div class="search">
+          <div class="textfield">
+            <input
+              type="text"
+              id="kodikos"
+              name="kodikos"
+              placeholder="Κωδικός Ακινήτου"
+            />
+          </div>
+          <button class="srchbutton">Εύρεση</button>
+          <!-- <div class="button">
+            <button type="button">Εύρεση</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="listing_header">
+      <p>Αποτελέσματα αναζήτησης</p>
+      <div class="listing_sort">
+        <label for="taksinomisi">Ταξινόμηση</label>
+        <select name="taksinomisiValues" id="taksinomisiValues">
+          <option value="descending">Φθίνουσα Τιμή</option>
+          <option value="ascending">Αύξουσα Τιμή</option>
+        </select>
+      </div>
+    </div>
+    <main class="grid_listings">
+      <article></article>
+
+      <aside>
+        <p>Αναζήτηση</p>
+        <div class="column">
+          <fieldset>
+            <div>
+              <label for="akinito">Περιόχη</label><br />
+              <select name="values" id="values">
+                <option value="position" selected>Όλες οι περιόχες</option>
+              </select>
+            </div>
+            <div>
+              <label for="akinito">Τύπος Ακινήτου</label><br />
+              <select name="values" id="values">
+                <optgroup label="Κατοικίες">
+                  <option value="living">Μονοκατοικία</option>
+                  <option value="living">Διαμέρισμα</option>
+                  <option value="living">Βίλα</option>
+                  <option value="living">Μεζονέτα</option>
+                  <option value="living">Studio</option>
+                </optgroup>
+                <optgroup label="Γη">
+                  <option value="gh">Αγροτέμαχιο</option>
+                  <option value="gh">Οικόπεδο</option>
+                </optgroup>
+              </select>
+            </div>
+            <div>
+              <label for="akinito">Προς</label><br />
+              <select name="values" id="values">
+                <option value="buy">Αγορά</option>
+                <option value="rent">Ενοικίαση</option>
+              </select>
+            </div>
+            <div class="from">
+              <label for="akinito">Τιμή από €</label><br />
+              <input type="text" id="rooms" name="rooms" placeholder="" />
+            </div>
+            <div class="to">
+              <label for="akinito">Τιμή έως €</label><br />
+              <input type="text" id="rooms" name="rooms" placeholder="" />
+            </div>
+            <div class="from">
+              <label for="akinito">Εμβαδόν από τ.μ</label><br />
+              <input type="text" id="size" name="size" placeholder="" />
+            </div>
+            <div class="to">
+              <label for="akinito">Εμβαδόν εώς τ.μ</label><br />
+              <input type="text" id="size" name="size" placeholder="" />
+            </div>
+            <div class="rooms">
+              <label for="akinito">Δωμάτια</label><br />
+              <input
+                type="text"
+                id="rooms"
+                name="rooms"
+                placeholder="Αριθμός Δωματιών"
+              />
+            </div>
+            <div class="floor">
+              <label for="akinito">Όροφος</label><br />
+              <select name="values" id="values">
+                <option value="orofos">0</option>
+                <option value="orofos">1</option>
+                <option value="orofos">2</option>
+                <option value="orofos">3</option>
+                <option value="orofos">4</option>
+                <option value="orofos">5</option>
+                <option value="orofos">6+</option>
+              </select>
+            </div>
+
+            <div class="search_btn">
+              <button>Αναζήτηση</button>
+            </div>
+          </fieldset>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

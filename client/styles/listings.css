@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:500");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+body {
+  background-color: #f2f3f4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+body {
+  background-color: #f2f3f4;
+}
+
+/* ------------>HEADER<------------ */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(66, 66, 66);
+  top: 0;
+  position: sticky;
+  align-items: center;
+}
+.header .logo {
+  padding: 2px;
+  margin-left: 70px;
+  margin-top: 6px;
+}
+.header .logo img {
+  height: 100%;
+  width: 75%;
+  object-fit: contain;
+}
+
+.header .search {
+  padding-top: 15px;
+  /* padding-right: 1%; */
+  display: flex;
+  border-left: 3px solid rgb(172, 172, 172);
+}
+.header .search .textfield {
+  padding-right: 5px;
+  padding-left: 10px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 50px;
+}
+
+.nav_links {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 140%;
+  padding-left: 10%;
+}
+
+/* ------------>NAVBAR<------------ */
+
+.nav_links li,
+.nav_links a,
+.srchbutton,
+.search,
+.loginLogout a {
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+.nav_links,
+.loginLogout {
+  list-style: none;
+}
+
+.nav_links li,
+.loginLogout li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.navRight {
+  display: flex;
+  padding-left: 100px;
+  padding-right: 1%;
+}
+
+.navRight .loginLogout {
+  float: left;
+  margin-right: 25px;
+  padding-top: 20px;
+}
+
+.nav_links li a,
+.nav_links li .dropdown .dropbtn,
+.loginLogout li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover,
+.nav_links li .dropdown .dropbtn:hover,
+.loginLogout li a:hover {
+  color: rgb(175, 166, 166);
+}
+
+.srchbutton {
+  padding: 5px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  margin-bottom: 15px;
+}
+
+.srchbutton:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
+
+.dropbtn {
+  background-color: inherit;
+  color: white;
+  padding: 23px 0px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(211, 211, 211, 0.5);
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* ------------>listing page<------------ */
+
+.listing_header {
+  display: flex;
+  width: 60%;
+  justify-content: space-around;
+  margin: 30px 400px;
+  /* padding-bottom: 10px; */
+  border-bottom: 3px solid black;
+}
+
+.listing_header p {
+  padding-top: 15px;
+}
+
+.listing_header .listing_sort {
+  float: right;
+  border-left: 3px solid black;
+  padding: 10px 0;
+}
+
+.listing_header .listing_sort label {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.grid_listings {
+  width: 60%;
+  margin: 0 400px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.spaceSize {
+  display: inline-flex;
+}
+
+.grid_listings aside p {
+  font-size: larger;
+  margin-right: 200px;
+  width: 100%;
+  border-bottom: 3px solid grey;
+}
+.grid_listings .column {
+  padding-top: 18px;
+}
+.grid_listings fieldset {
+  border-color: white;
+  border-radius: 4px;
+  width: 100%;
+  background-color: rgb(246, 245, 245);
+}
+.grid_listings fieldset div {
+  margin-left: 20px;
+  padding-top: 6px;
+}
+
+.grid_listings fieldset div select {
+  width: 75%;
+  padding: 4px;
+  -webkit-appearance: none;
+}
+.grid_listings aside .search_btn {
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+.grid_listings aside .search_btn button {
+  padding: 5px;
+  border: 1.5px solid black;
+  border-radius: 4px;
+  background-color: rgba(0, 136, 169, 1);
+  color: white;
+  font-weight: bold;
+}
+.grid_listings {
+  display: space-between;
+}
