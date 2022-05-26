@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <!-- <script type="text/javascript" src="../src/basicAuth.js"></script> -->
+    <script type="text/javascript" src="../src/allpages.js" defer></script>
+    <script type="text/javascript" src="../src/register.js" defer></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">
+        <a href="index.html"><img src="../images/logo.png" alt="logo_pic" /></a>
+      </div>
+      <nav>
+        <ul class="nav_links">
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">Email</button>
+              <div class="dropdown-content">
+                <a href="#">up1066537@upnet.gr</a>
+                <a href="#">up1066504@upnet.gr</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">Τηλέφωνο Επικοινωνίας</button>
+              <div class="dropdown-content">
+                <a href="#">2106543017</a>
+                <a href="#">6976329901</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">
+                <a href="listings.html">Ακίνητα</a>
+              </button>
+            </div>
+          </li>
+          <li class="myListings">
+            <div class="dropdown">
+              <button class="dropbtn">
+                <a href="#">Τα δικά μου ακίνητα</a>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="navRight">
+        <ul class="loginLogout">
+          <li><a href="#">Είσοδος/Εγγραφή</a></li>
+        </ul>
+        <div class="search">
+          <div class="textfield">
+            <input
+              type="text"
+              id="kodikos"
+              name="kodikos"
+              placeholder="Κωδικός Ακινήτου"
+            />
+          </div>
+          <button class="srchbutton">Εύρεση</button>
+        </div>
+      </div>
+    </div>
+    <div class="loginPage">
+      <label for="email">Email:</label>
+      <input type="text" class="email" /><br />
+      <label for="username">Username:</label>
+      <input type="text" class="username" /><br />
+      <label for="password">Password:</label>
+      <input type="password" class="password" /><br />
+      <label for="password">Repeat Password:</label>
+      <input type="password" class="repeatPassword" /><br />
+      <button class="submitRegister">Register</button>
+    </div>
+  </body>
+</html>

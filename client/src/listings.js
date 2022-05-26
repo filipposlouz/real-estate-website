@@ -4,6 +4,14 @@ const listings = document.querySelector(".grid_listings article");
 // Event Listeners
 window.addEventListener("DOMContentLoaded", async (e) => {
   e.preventDefault();
+  const role = await fetch("http://localhost:3000/verify", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({ hash: localStorage.getItem("id") }),
+  }).then((res) => res.json());
   for (let i = 0; i < 5; i++) {
     const response = await fetch("http://localhost:3000/properties", {
       method: "GET",
@@ -25,7 +33,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       middleContainer.setAttribute("class", "propertyItem");
       const insideContainer = document.createElement("div");
       insideContainer.setAttribute("class", "propertyContent");
-      const url = `http://localhost:3000/properties/${house.Id}`;
+      const url = `http://localhost:3000/properties/image/${house.Id}`;
       const data = await fetch(url, {
         method: "GET",
         headers: {
@@ -104,7 +112,23 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       desc.innerText = house.description;
       textContainer.appendChild(location);
       textContainer.appendChild(desc);
-
+      if (role.role === "Admin") {
+        const delButton = document.createElement("button");
+        delButton.innerText = "Delete";
+        delButton.setAttribute("class", "deleteProperty");
+        delButton.addEventListener("click", async (e) => {
+          e.preventDefault();
+          await fetch(`http://localhost:3000/property/${house.id}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          });
+          console.log("Property was deleted successfully");
+        });
+        textContainer.appendChild(delButton);
+      }
       insideContainer.appendChild(imageContainer);
       insideContainer.appendChild(textContainer);
 

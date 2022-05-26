@@ -24,7 +24,156 @@ app.get("/properties", async (req, res) => {
   }
 });
 
-app.get("/properties/:id", async (req, res) => {
+app.post("/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await pool.query(
+      `SELECT * FROM "Users" WHERE "username" = '${username}';`
+    );
+    // console.log(user.rows);
+    // await bcrypt.hash(user.rows[0].password, saltRounds, (err, hash) => {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   console.log(hash);
+    // });
+    // console.log(user.rows.length);
+    if (user.rows.length > 0) {
+      bcrypt.compare(
+        password,
+        user.rows[0].password,
+        async (error, response) => {
+          if (response) {
+            const { Id } = user.rows[0];
+            // const role = await pool.query(
+            //   `SELECT * FROM "Admin" WHERE "Id" = ${Id};`
+            // );
+            await bcrypt.hash(
+              user.rows[0].username + Id,
+              saltRounds,
+              (err, hash) => {
+                if (err) {
+                  console.log(err);
+                }
+                res.status(200).json({ success: true, id: Id + hash });
+              }
+            );
+            //   if (user.rows.length > 0) {
+            //     console.log(hash);
+            //     res.status(200).json({ success: true, id: hash });
+            //   }
+            // } else {
+            //   res.send({
+            //     success: false,
+            //     message: "Wrong username or password.",
+            //   });
+            // }
+          }
+        }
+      );
+    } else {
+      res.send({ success: false, message: "Wrong username or password." });
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.post("/register", async (req, res) => {
+  try {
+    const { email, username, password } = req.body;
+    const checkEmail = await pool.query(
+      `SELECT * FROM "Users" WHERE "email" = '${email}'`
+    );
+    if (checkEmail.rows.length > 0) {
+      res.send({ success: false, message: "Email already exists." });
+      return;
+    }
+    const checkUser = await pool.query(
+      `SELECT * FROM "Users" WHERE "username" = '${username}'`
+    );
+    if (checkUser.rows.length > 0) {
+      res.send({ success: false, message: "Username already exists." });
+      return;
+    }
+    await bcrypt.hash(password, saltRounds, async (err, hash) => {
+      if (err) {
+        console.log(err);
+      }
+      await pool.query(
+        `INSERT INTO "Users" ("email", "username", "password") VALUES ('${email}', '${username}', '${hash}');`
+      );
+      const id = await pool.query(
+        `SELECT * FROM "Users" WHERE "username" = '${username}' AND "email" = '${email}'`
+      );
+      await bcrypt.hash(
+        username + id.rows[0].Id,
+        saltRounds,
+        async (err, hash) => {
+          if (err) {
+            console.error(err);
+          }
+          res.send({ success: true, id: id.rows[0].id + hash });
+        }
+      );
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+app.post("/verify", async (req, res) => {
+  try {
+    let { hash } = req.body;
+    const id = hash[0];
+    hash = hash.slice(1);
+    const user = await pool.query(`SELECT * FROM "Users" WHERE "Id" = '${id}'`);
+    bcrypt.compare(user.rows[0].username + id, hash, async (err, response) => {
+      if (response) {
+        const role = await pool.query(
+          `SELECT * FROM "Admin" WHERE "Id" = '${id}'`
+        );
+        if (role.rows.length > 0) {
+          res.send({ success: true, role: "Admin" });
+        } else {
+          res.send({ success: true, role: "Basic" });
+        }
+      }
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+app.post("/mylistings", async (req, res) => {
+  try {
+    let { hash } = req.body;
+    const id = hash[0];
+    hash = hash.slice(1);
+    const user = await pool.query(`SELECT * FROM "Users" WHERE "Id" = '${id}'`);
+    bcrypt.compare(user.rows[0].username + id, hash, async (err, response) => {
+      if (response) {
+        // FILL HERE
+      }
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+app.delete("/property/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteProperty = await pool.query(
+      `DELETE FROM "Property" WHERE "Id" = ${id}`
+    );
+    res.status(200).json("Employee was deleted");
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+app.get("/properties/image/:id", async (req, res) => {
   try {
     const { id } = req.params;
     res.status(200).sendFile(path.join(__dirname, "../images", `${id}.png`));
