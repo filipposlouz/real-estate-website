@@ -1,0 +1,34 @@
+.loginPage {
+  max-height: 100%;
+  max-width: 100%;
+}
+.loginPage .login_container {
+  text-align: center;
+  margin-top: 10%;
+  padding: 0 25% 0 25%;
+}
+
+.submit {
+  padding-left: 6%;
+}
+
+.loginPage input[type="text"],
+input[type="password"] {
+  width: 50%;
+  padding: 10px 10px;
+  margin: 8px 0;
+
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.loginPage button {
+  background-color: #0088a9;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+}

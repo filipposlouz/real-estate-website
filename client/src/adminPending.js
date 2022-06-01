@@ -1,7 +1,5 @@
 // Selectors
-const mylistings = document.querySelector(".userListings");
-const mylistings_btn = document.querySelector(".createListing button");
-const modal = document.querySelector(".modal");
+const pendingDiv = document.querySelector(".pendingRequests");
 
 const titleTranslation = {
   oneFloor: "Μονοκατοικία",
@@ -17,22 +15,24 @@ const asArray = Object.entries(titleTranslation);
 // Event Listeners
 window.addEventListener("DOMContentLoaded", async (e) => {
   e.preventDefault();
-  const response = await fetch("http://localhost:3000/mylistings", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-    body: JSON.stringify({ hash: localStorage.getItem("id") }),
-  })
+
+  const pendingRequests = await fetch(
+    "http://localhost:3000/property/pending",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ hash: localStorage.getItem("id") }),
+    }
+  )
     .then((res) => res.json())
     .catch((err) => console.error(err));
-  if (response === undefined) {
+  if (pendingRequests === undefined) {
     return;
   } else {
-    // for (house of response) {
-    response.forEach(async (house) => {
-      console.log(house);
+    pendingRequests.forEach(async (house) => {
       const outsideColumn = document.createElement("div");
       outsideColumn.setAttribute("class", "outsideColumn");
       const column = document.createElement("div");
@@ -131,32 +131,50 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       textContainer.appendChild(location);
       textContainer.appendChild(desc);
 
+      const pdf = await fetch(
+        `http://localhost:3000/properties/pdf/${house.Id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "image/png",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      const pdfElem = document.createElement("a");
+      pdfElem.href = pdf.url;
+      pdfElem.innerText = pdf.url.split(/\//).pop() + ".pdf";
+      textContainer.appendChild(pdfElem);
+      textContainer.appendChild(document.createElement("br"));
+
       const delButton = document.createElement("button");
-      delButton.innerText = "Delete";
+      delButton.innerText = "Διαγραφή";
       delButton.setAttribute("class", "deleteProperty");
-      console.log(house.Id);
       delButton.addEventListener("click", async (e) => {
         e.preventDefault();
-        const houseId = house.Id;
-        console.log(houseId);
-        await fetch(`http://localhost:3000/property/${houseId}`, {
+        await fetch(`http://localhost:3000/property/${house.Id}`, {
           method: "DELETE",
         });
         console.log("Property was deleted successfully");
         window.location.reload();
       });
       textContainer.appendChild(delButton);
-      const isPending = await fetch(
-        `http://localhost:3000/property/${house.Id}/pending`,
-        {
-          method: "GET",
+
+      const acceptButton = document.createElement("button");
+      acceptButton.innerText = "Αποδοχή Αιτήματος";
+      acceptButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const acceptPending = await fetch(
+          `http://localhost:3000/property/acceptPending/${house.Id_request}`,
+          {
+            method: "PUT",
+          }
+        ).then((res) => res.json());
+        if (acceptPending.success === true) {
+          window.location.reload();
         }
-      ).then((res) => res.json());
-      if (isPending.pending === true) {
-        const pending = document.createElement("button");
-        pending.innerText = "Request pending";
-        textContainer.appendChild(pending);
-      }
+      });
+      textContainer.appendChild(acceptButton);
 
       insideContainer.appendChild(imageContainer);
       insideContainer.appendChild(textContainer);
@@ -167,18 +185,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
       outsideColumn.appendChild(column);
       column.appendChild(outsideContainer);
-      mylistings.appendChild(outsideColumn);
+      pendingDiv.appendChild(outsideColumn);
     });
-  }
-});
-
-mylistings_btn.addEventListener("click", (e) => {
-  e.preventDefault();
-  modal.style.display = "block";
-});
-
-window.addEventListener("click", function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
   }
 });

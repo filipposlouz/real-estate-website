@@ -1,6 +1,6 @@
 // Selectors
-const username = document.querySelector(".username");
-const password = document.querySelector(".password");
+const username = document.querySelector(".username input");
+const password = document.querySelector(".password input");
 const loginBtn = document.querySelector(".submitLogin");
 const logoutBtn = document.querySelector(".submitLogout");
 const registerBtn = document.querySelector(".submitRegister");
@@ -8,6 +8,7 @@ const registerBtn = document.querySelector(".submitRegister");
 // Event Listeners
 loginBtn.addEventListener("click", async (e) => {
   const data = { username: username.value, password: password.value };
+  console.log(data);
   const res = await fetch("http://localhost:3000/login", {
     method: "POST",
     headers: {

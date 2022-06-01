@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Live Real</title>
 
     <link rel="stylesheet" href="../styles/navbar.css" />
-    <link rel="stylesheet" href="../styles/login.css" />
+    <link rel="stylesheet" href="../styles/adminPending.css" />
     <!-- <script type="text/javascript" src="../src/basicAuth.js"></script> -->
     <script type="text/javascript" src="../src/allpages.js" defer></script>
-    <script type="text/javascript" src="../src/login.js" defer></script>
+    <script type="text/javascript" src="../src/adminPending.js" defer></script>
   </head>
   <body>
     <div class="header">
@@ -67,24 +67,12 @@
             />
           </div>
           <button class="srchbutton">Εύρεση</button>
+          <!-- <div class="button">
+                <button type="button">Εύρεση</button>
+              </div> -->
         </div>
       </div>
     </div>
-    <div class="loginPage">
-      <div class="login_container">
-        <div class="username">
-          <label for="username">Username:</label>
-          <input type="text" class="username" /><br />
-        </div>
-        <div class="password">
-          <label for="password">Password:</label>
-          <input type="password" class="password" /><br />
-        </div>
-        <div class="submit">
-          <button class="submitLogin">Login</button>
-          <button class="submitRegister">Register</button>
-        </div>
-      </div>
-    </div>
+    <div class="pendingRequests"></div>
   </body>
 </html>

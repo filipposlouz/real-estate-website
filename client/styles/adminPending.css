@@ -1,0 +1,66 @@
+.outsideColumn {
+  width: 90%;
+  height: 300px;
+  margin: 2% 5% 20px 5%;
+  /* overflow: hidden; */
+}
+
+.column {
+  width: 100%;
+  padding: 15px;
+  height: 280px;
+  background-color: rgb(246, 245, 245);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 4px;
+}
+
+.propertyContent {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.imageContainer {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-right: 10px;
+  z-index: 1;
+}
+
+.propertyType {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 5px;
+  background-color: rgba(246, 245, 245, 0.5);
+  text-decoration: none;
+}
+
+.outsideColumn img {
+  width: 60%;
+  height: 65%;
+  float: left;
+}
+
+.textContainer {
+  display: inline;
+}
+
+.textContainer p:first-child {
+  float: right;
+}
+
+.textContainer p:nth-child(3) {
+  margin-top: 1%;
+}
+
+.textContainer p:nth-last-child(2) {
+  /* position: fixed; */
+  margin-top: 10%;
+}
+
+.textContainer h4 a {
+  text-decoration: none;
+  color: rgb(54, 54, 54);
+}

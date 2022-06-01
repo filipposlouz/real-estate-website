@@ -73,96 +73,119 @@
         </div>
       </div>
     </div>
-    <div class="listing_header">
-      <p>Αποτελέσματα αναζήτησης</p>
-      <div class="listing_sort">
-        <label for="taksinomisi">Ταξινόμηση</label>
-        <select name="taksinomisiValues" id="taksinomisiValues">
-          <option value="descending">Φθίνουσα Τιμή</option>
-          <option value="ascending">Αύξουσα Τιμή</option>
-        </select>
-      </div>
-    </div>
-    <main class="grid_listings">
-      <article></article>
-
-      <aside>
-        <p>Αναζήτηση</p>
-        <div class="column">
-          <fieldset>
-            <div>
-              <label for="akinito">Περιόχη</label><br />
-              <select name="values" id="values">
-                <option value="position" selected>Όλες οι περιόχες</option>
-              </select>
-            </div>
-            <div>
-              <label for="akinito">Τύπος Ακινήτου</label><br />
-              <select name="values" id="values">
-                <optgroup label="Κατοικίες">
-                  <option value="living">Μονοκατοικία</option>
-                  <option value="living">Διαμέρισμα</option>
-                  <option value="living">Βίλα</option>
-                  <option value="living">Μεζονέτα</option>
-                  <option value="living">Studio</option>
-                </optgroup>
-                <optgroup label="Γη">
-                  <option value="gh">Αγροτέμαχιο</option>
-                  <option value="gh">Οικόπεδο</option>
-                </optgroup>
-              </select>
-            </div>
-            <div>
-              <label for="akinito">Προς</label><br />
-              <select name="values" id="values">
-                <option value="buy">Αγορά</option>
-                <option value="rent">Ενοικίαση</option>
-              </select>
-            </div>
-            <div class="from">
-              <label for="akinito">Τιμή από €</label><br />
-              <input type="text" id="rooms" name="rooms" placeholder="" />
-            </div>
-            <div class="to">
-              <label for="akinito">Τιμή έως €</label><br />
-              <input type="text" id="rooms" name="rooms" placeholder="" />
-            </div>
-            <div class="from">
-              <label for="akinito">Εμβαδόν από τ.μ</label><br />
-              <input type="text" id="size" name="size" placeholder="" />
-            </div>
-            <div class="to">
-              <label for="akinito">Εμβαδόν εώς τ.μ</label><br />
-              <input type="text" id="size" name="size" placeholder="" />
-            </div>
-            <div class="rooms">
-              <label for="akinito">Δωμάτια</label><br />
-              <input
-                type="text"
-                id="rooms"
-                name="rooms"
-                placeholder="Αριθμός Δωματιών"
-              />
-            </div>
-            <div class="floor">
-              <label for="akinito">Όροφος</label><br />
-              <select name="values" id="values">
-                <option value="orofos">0</option>
-                <option value="orofos">1</option>
-                <option value="orofos">2</option>
-                <option value="orofos">3</option>
-                <option value="orofos">4</option>
-                <option value="orofos">5</option>
-                <option value="orofos">6+</option>
-              </select>
-            </div>
-
-            <div class="search_btn">
-              <button>Αναζήτηση</button>
-            </div>
-          </fieldset>
+    <div class="listingBody">
+      <div class="listing_header">
+        <p>Αποτελέσματα αναζήτησης</p>
+        <div class="listing_sort">
+          <label for="taksinomisi">Ταξινόμηση</label>
+          <select name="taksinomisiValues" id="taksinomisiValues">
+            <option value="placeholder" selected disabled>Τρόπος</option>
+            <option value="descending">Φθίνουσα Τιμή</option>
+            <option value="ascending">Αύξουσα Τιμή</option>
+          </select>
         </div>
-      </aside>
-    </main>
+      </div>
+      <main class="grid_listings">
+        <article>
+          <div class="data"></div>
+          <div class="paging">
+            <a
+              href="javascript:prevPage()"
+              id="btn_prev"
+              style="text-decoration: none; color: #0088a9; font-size: medium"
+              ><< PREVIOUS PAGE</a
+            >
+            <a
+              href="javascript:nextPage()"
+              id="btn_next"
+              style="text-decoration: none; color: #0088a9; font-size: medium"
+              >NEXT PAGE >></a
+            >
+            <!-- <span id="page"></span> -->
+          </div>
+        </article>
+
+        <aside>
+          <p>Αναζήτηση</p>
+          <div class="column">
+            <fieldset>
+              <div>
+                <label for="akinito">Περιόχη</label><br />
+                <select name="values" id="valuesPrefect">
+                  <option value="Όλες οι περιοχές" selected>
+                    Όλες οι περιόχες
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label for="akinito">Τύπος Ακινήτου</label><br />
+                <select name="values" id="valuesHouseType">
+                  <optgroup label="Κατοικίες">
+                    <option value="oneFloor">Μονοκατοικία</option>
+                    <option value="flat">Διαμέρισμα</option>
+                    <option value="villa">Βίλα</option>
+                    <option value="mezoneta">Μεζονέτα</option>
+                    <option value="studio">Studio</option>
+                  </optgroup>
+                  <optgroup label="Γη">
+                    <option value="field">Αγροτέμαχιο</option>
+                    <option value="place">Οικόπεδο</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div>
+                <label for="akinito">Προς</label><br />
+                <select name="values" id="valuesToOption">
+                  <option value="buy">Αγορά</option>
+                  <option value="rent">Ενοικίαση</option>
+                </select>
+              </div>
+              <div class="from">
+                <label for="akinito">Τιμή από €</label><br />
+                <input type="text" id="priceFrom" name="rooms" placeholder="" />
+              </div>
+              <div class="to">
+                <label for="akinito">Τιμή έως €</label><br />
+                <input type="text" id="priceTo" name="rooms" placeholder="" />
+              </div>
+              <div class="from">
+                <label for="akinito">Εμβαδόν από τ.μ</label><br />
+                <input type="text" id="sizeFrom" name="size" placeholder="" />
+              </div>
+              <div class="to">
+                <label for="akinito">Εμβαδόν εώς τ.μ</label><br />
+                <input type="text" id="sizeTo" name="size" placeholder="" />
+              </div>
+              <div class="rooms">
+                <label for="akinito">Δωμάτια</label><br />
+                <input
+                  type="text"
+                  id="numOfRooms"
+                  name="rooms"
+                  placeholder="Αριθμός Δωματιών"
+                />
+              </div>
+              <div class="floor">
+                <label for="akinito">Όροφος</label><br />
+                <select name="values" id="numOfFloors">
+                  <option value="all">Όλοι οι όροφοι</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="sixPlus">6+</option>
+                </select>
+              </div>
+
+              <div class="search_btn">
+                <button>Αναζήτηση</button>
+              </div>
+            </fieldset>
+          </div>
+        </aside>
+      </main>
+    </div>
   </body>
 </html>

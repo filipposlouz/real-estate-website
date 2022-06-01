@@ -15,6 +15,7 @@ submit.addEventListener("click", async (e) => {
         username: username.value,
         password: password.value,
       };
+      console.log("here");
       const res = await fetch("http://localhost:3000/register", {
         method: "POST",
         headers: {

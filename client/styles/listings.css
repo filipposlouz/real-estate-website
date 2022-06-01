@@ -25,10 +25,16 @@
 }
 
 .grid_listings {
-  width: 60%;
-  margin: 0 400px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
+  justify-content: space-around;
+  width: 65%;
+}
+
+.listingBody {
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  flex-direction: column;
 }
 
 .spaceSize {
@@ -41,9 +47,20 @@
   width: 100%;
   border-bottom: 3px solid grey;
 }
-.grid_listings .column {
+/* .grid_listings .column {
   padding-top: 18px;
+} */
+.paging {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
 }
+
+article {
+  width: 600px;
+}
+
 .grid_listings fieldset {
   border-color: white;
   border-radius: 4px;
@@ -72,18 +89,20 @@
   color: white;
   font-weight: bold;
 }
-.grid_listings {
-  display: space-between;
-}
 
 .outsideColumn {
   width: 100%;
-  height: 300px;
-  margin: 20px 40px 20px 0;
+  margin-top: 20px;
+  position: relative;
+}
+
+.data {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 article .column {
-  width: 95%;
   padding: 15px;
   height: 280px;
   background-color: rgb(246, 245, 245);
@@ -92,9 +111,13 @@ article .column {
 }
 
 .propertyContent {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
+  /* justify-content: space-between; */
+  padding: 5px;
+}
+
+aside p {
+  margin-bottom: 10px;
 }
 
 .imageContainer {
@@ -103,6 +126,7 @@ article .column {
   color: white;
   margin-right: 10px;
   z-index: 1;
+  width: 220px;
 }
 
 .propertyType {
@@ -116,7 +140,6 @@ article .column {
 
 .outsideColumn img {
   width: 100%;
-  height: 100%;
   float: left;
 }
 
@@ -126,6 +149,9 @@ article .column {
 
 .textContainer p:first-child {
   float: right;
+  position: absolute;
+  top: 6%;
+  right: 3%;
 }
 
 .textContainer p:nth-child(3) {

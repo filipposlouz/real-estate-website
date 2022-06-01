@@ -1,19 +1,25 @@
 // Selectors
-// 1st column
+
+const nameOfOwner = document.querySelector(".nameOfOwner");
+const phoneOfOwner = document.querySelector(".phoneOfOwner");
+const address = document.querySelector(".address");
+
 const toOption = document.querySelector("#valuesToOption");
 const prefecture = document.querySelector("#valuesPrefect");
-const priceFrom = document.querySelector("#priceFrom");
-const priceTo = document.querySelector("#priceTo");
-// 2nd column
+const price = document.querySelector("#price");
+const size = document.querySelector("#size");
+
 const houseType = document.querySelector("#valuesHouseType");
 const townsInPrefect = document.querySelector("#valuesTownsInPrefect");
-const sizeFrom = document.querySelector("#sizeFrom");
-const sizeTo = document.querySelector("#sizeTo");
-// 3rd column
+
 const numOfRooms = document.querySelector("#numOfRooms");
 const numOfFloors = document.querySelector("#numOfFloors");
 const placesInTown = document.querySelector("#valuesPlacesInTown");
-const searchButton = document.querySelector(".search_btn");
+const description = document.querySelector("#description");
+const photo = document.querySelector("#photo");
+const ownership_file = document.querySelector("#ownership_file");
+
+const add_btn = document.querySelector(".create_house_btn button");
 
 // Event Listeners
 prefecture.addEventListener("change", async (e) => {
@@ -94,7 +100,7 @@ townsInPrefect.addEventListener("change", async (e) => {
   }
 });
 
-searchButton.addEventListener("click", (e) => {
+add_btn.addEventListener("click", async (e) => {
   e.preventDefault();
   let toSell = true;
   if (toOption.value === "buy") {
@@ -103,19 +109,52 @@ searchButton.addEventListener("click", (e) => {
     toSell = false;
   }
   const property = {
+    nameOfOwner: nameOfOwner.value,
+    phoneOfOwner: phoneOfOwner.value,
     province: prefecture.value,
     town: townsInPrefect.value,
     placeInTown: placesInTown.value,
+    address: address.value,
     toSell: toSell,
-    priceFrom: priceFrom.value,
-    priceTo: priceTo.value,
-    sizeFrom: sizeFrom.value,
-    sizeTo: sizeTo.value,
+    squareMeters: size.value,
+    description: description.value,
+    price: price.value,
     typeOfProperty: houseType.value,
     numOfRooms: numOfRooms.value,
     numOfFloors: numOfFloors.value,
   };
-  window.location.href =
-    "listings.html" +
-    `?province=${property.province}&town=${property.town}&placeInTown=${property.placeInTown}&toSell=${property.toSell}&priceFrom=${property.priceFrom}&priceTo=${property.priceTo}&sizeFrom=${property.sizeFrom}&sizeTo=${property.sizeTo}&typeOfProperty=${property.typeOfProperty}&numOfRooms=${property.numOfRooms}&numOfFloors=${property.numOfFloors}`;
+
+  const res = await fetch("http://localhost:3000/createListings", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({ hash: localStorage.getItem("id"), ...property }),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  console.log(res.id);
+  const formDataImage = new FormData();
+  formDataImage.append("fileToUpload", photo.files[0]);
+  console.log("first");
+  const sendImage = await fetch(
+    `http://localhost:3000/property/${res.id}/image`,
+    {
+      method: "POST",
+      body: formDataImage,
+    }
+  )
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+
+  const formDataPdf = new FormData();
+  formDataPdf.append("fileToUpload", ownership_file.files[0]);
+  console.log("here");
+  const sendPdf = await fetch(`http://localhost:3000/property/${res.id}/pdf`, {
+    method: "POST",
+    body: formDataPdf,
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
 });

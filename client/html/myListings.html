@@ -8,9 +8,11 @@
 
     <!-- <link rel="stylesheet" href="../styles/index.css" /> -->
     <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/mylistings.css" />
     <!-- <script type="text/javascript" src="../src/basicAuth.js"></script> -->
     <script type="text/javascript" src="../src/allpages.js" defer></script>
     <script type="text/javascript" src="../src/myListings.js" defer></script>
+    <script type="text/javascript" src="../src/modal.js" defer></script>
   </head>
   <body>
     <div class="header">
@@ -73,8 +75,137 @@
         </div>
       </div>
     </div>
-    <div>
-      <h4>lmao</h4>
+    <div class="Listings&button">
+      <div class="createListing">
+        <button>Προσθήκη Νέου Ακινήτου</button>
+      </div>
+      <div class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Προσθήκη Νέου Ακινήτου</h2>
+          </div>
+          <div class="modal-body">
+            <fieldset>
+              <div>
+                <label for="name">Ονοματεπώνυμο</label><br />
+                <input class="nameOfOwner" type="text" placeholder="" />
+              </div>
+              <div>
+                <label for="phone">Τηλέφωνο</label><br />
+                <input class="phoneOfOwner" type="text" placeholder="" />
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div>
+                <label for="akinito">Γεωγραφικό Διαμέρισμα</label><br />
+                <select name="values" id="valuesPrefect">
+                  <option value="placeholder" selected disabled>
+                    Επιλέξτε Γεωγ. Διαμέρισμα
+                  </option>
+                  <option value="achaia">Αχαΐα</option>
+                  <option value="aitoliaAkarnania">Αιτωλία & Ακαρνανία</option>
+                  <option value="fokida">Φωκίδα</option>
+                </select>
+              </div>
+              <div>
+                <label for="akinito">Τοποθεσία</label><br />
+                <select
+                  name="valuesTownsInPrefect"
+                  id="valuesTownsInPrefect"
+                ></select>
+              </div>
+              <div class="town">
+                <label for="akinito">Περιόχη</label><br />
+                <select
+                  name="valuesPlacesInTown"
+                  id="valuesPlacesInTown"
+                ></select>
+              </div>
+              <div>
+                <label for="address">Διεύθυνση</label><br />
+                <input
+                  class="address"
+                  type="text"
+                  placeholder="π.χ. 'Διεύθυνση Νούμερο'"
+                />
+              </div>
+              <div>
+                <label for="akinito">Προς</label><br />
+                <select name="valuesToOption" id="valuesToOption">
+                  <option value="buy">Αγορά</option>
+                  <option value="rent">Ενοικίαση</option>
+                </select>
+              </div>
+              <div>
+                <label for="size">Εμβαδόν τ.μ</label><br />
+                <input type="text" id="size" name="size" placeholder="" />
+              </div>
+              <div>
+                <label for="price">Τιμή</label><br />
+                <input type="text" id="price" placeholder="" />
+              </div>
+              <div>
+                <label for="akinito">Τύπος Ακινήτου</label><br />
+                <select name="valuesHouseType" id="valuesHouseType">
+                  <optgroup label="Κατοικίες">
+                    <option value="oneFloor">Μονοκατοικία</option>
+                    <option value="flat">Διαμέρισμα</option>
+                    <option value="villa">Βίλα</option>
+                    <option value="mezoneta">Μεζονέτα</option>
+                    <option value="studio">Studio</option>
+                  </optgroup>
+                  <optgroup label="Γη">
+                    <option value="field">Αγροτέμαχιο</option>
+                    <option value="place">Οικόπεδο</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="divNumOfRooms">
+                <label for="akinito">Δωμάτια</label><br />
+                <input
+                  type="text"
+                  id="numOfRooms"
+                  name="rooms"
+                  placeholder="Αριθμός Δωματιών"
+                />
+              </div>
+              <div class="floor">
+                <label for="akinito">Όροφος</label><br />
+                <select name="values" id="numOfFloors">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6+</option>
+                </select>
+              </div>
+              <div>
+                <label for="description">Περιγραφή</label><br />
+                <textarea id="description" name="description"></textarea>
+              </div>
+              <div>
+                <label for="ownership_file">Πιστοποιητικό Ιδιοκτησίας</label
+                ><br />
+                <input type="file" id="ownership_file" />
+              </div>
+              <div>
+                <label for="photo">Φωτογραφία</label><br />
+                <input type="file" id="photo" />
+              </div>
+            </fieldset>
+          </div>
+          <div class="modal-footer">
+            <div class="create_house_btn">
+              <button>Προσθήκη</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="userListings"></div>
     </div>
   </body>
 </html>
