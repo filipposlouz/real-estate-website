@@ -22,6 +22,12 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     },
     body: JSON.stringify({ hash: localStorage.getItem("id") }),
   }).then((res) => res.json());
+  console.log(role.role);
+  if (role.message === "Unauthorized." && role.role === undefined) {
+    localStorage.clear();
+    window.location.href = "login.html";
+    return;
+  }
   let locationUrl = window.location.href;
   locationUrl = locationUrl.split("?")[1].split("=")[1];
   const response = await fetch(
@@ -118,7 +124,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   textContainer.appendChild(desc);
   if (role.role === "Admin") {
     const delButton = document.createElement("button");
-    delButton.innerText = "Delete";
+    delButton.innerText = "Διαγραφή";
     delButton.setAttribute("class", "deleteProperty");
     delButton.addEventListener("click", async (e) => {
       e.preventDefault();

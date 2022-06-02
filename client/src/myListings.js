@@ -27,6 +27,11 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   })
     .then((res) => res.json())
     .catch((err) => console.error(err));
+  if (response.message === "Unauthorized.") {
+    localStorage.clear();
+    window.location.href = "login.html";
+    return;
+  }
   if (response === undefined) {
     return;
   } else {
@@ -132,7 +137,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       textContainer.appendChild(desc);
 
       const delButton = document.createElement("button");
-      delButton.innerText = "Delete";
+      delButton.innerText = "Διαγραφή";
       delButton.setAttribute("class", "deleteProperty");
       console.log(house.Id);
       delButton.addEventListener("click", async (e) => {
@@ -154,7 +159,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       ).then((res) => res.json());
       if (isPending.pending === true) {
         const pending = document.createElement("button");
-        pending.innerText = "Request pending";
+        pending.innerText = "Εκκρεμεί έγκριση";
         textContainer.appendChild(pending);
       }
 

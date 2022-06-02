@@ -1,10 +1,17 @@
 // Selectors
-const loginButton = document.querySelector(".loginLogout li a");
+const loginButton = document.querySelector(".loginLogout");
 const myListings = document.querySelector(".myListings div button a");
 const propertyCode = document.querySelector("#kodikos");
 const srchbutton = document.querySelector(".srchbutton");
+const toggleButton = document.querySelector(".toggle-button");
+const navbarLinks = document.querySelector(".nav_links");
+const navbarRight = document.querySelector(".navRight");
 
 // Event Listeners
+toggleButton.addEventListener("click", () => {
+  navbarLinks.classList.toggle("active");
+});
+
 window.addEventListener("DOMContentLoaded", async (e) => {
   e.preventDefault();
   if (localStorage.getItem("id")) {
@@ -17,6 +24,11 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       },
       body: JSON.stringify({ hash: localStorage.getItem("id") }),
     }).then((res) => res.json());
+    if (role.message === "Unauthorized." && role.role === undefined) {
+      localStorage.clear();
+      window.location.href = "login.html";
+      return;
+    }
     if (role.role === "Admin") {
       myListings.innerText = "Εκκρεμή Αιτήματα";
     }
@@ -35,6 +47,7 @@ loginButton.addEventListener("click", (e) => {
 
 myListings.addEventListener("click", (e) => {
   e.preventDefault();
+  console.log("here");
   if (myListings.innerText === "Εκκρεμή Αιτήματα") {
     window.location.href = "adminPending.html";
   } else if (localStorage.getItem("id")) {

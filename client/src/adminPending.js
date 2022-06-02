@@ -29,6 +29,11 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   )
     .then((res) => res.json())
     .catch((err) => console.error(err));
+  if (pendingRequests.message === "Unauthorized.") {
+    localStorage.clear();
+    window.location.href = "login.html";
+    return;
+  }
   if (pendingRequests === undefined) {
     return;
   } else {

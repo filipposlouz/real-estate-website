@@ -69,6 +69,11 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     },
     body: JSON.stringify({ hash: localStorage.getItem("id") }),
   }).then((res) => res.json());
+  if (role.message === "Unauthorized." && role.role === undefined) {
+    localStorage.clear();
+    window.location.href = "login.html";
+    return;
+  }
   if (
     window.location.href.search(/\?/) === -1 ||
     new URLSearchParams(window.location.search).get("order")

@@ -13,21 +13,9 @@ body {
   background-color: #f2f3f4;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-}
-body {
-  background-color: #f2f3f4;
-}
-
 /* ------------>HEADER<------------ */
 
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   background-color: rgb(66, 66, 66);
@@ -49,7 +37,6 @@ body {
 
 .header .search {
   padding-top: 15px;
-  /* padding-right: 1%; */
   display: flex;
   border-left: 3px solid rgb(172, 172, 172);
 }
@@ -59,13 +46,45 @@ body {
   margin-top: 4px;
   border: none;
   border-radius: 50px;
-}
+} */
 
-.nav_links {
+/* .nav_links {
   display: inline-flex;
   justify-content: space-between;
   width: 140%;
   padding-left: 10%;
+} */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(66, 66, 66);
+  color: white;
+}
+
+.nav_links ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
 }
 
 /* ------------>NAVBAR<------------ */
@@ -141,6 +160,10 @@ body {
   display: inline-block;
 }
 
+.navRightSearch {
+  border-left: 3px solid rgb(172, 172, 172);
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -164,4 +187,38 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+@media (max-width: 1100px) {
+  .toggle-button {
+    display: flex;
+  }
+  .nav_links {
+    display: none;
+    width: 100%;
+  }
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav_links ul {
+    width: 100%;
+    flex-direction: column;
+  }
+  .nav_links li {
+    text-align: center;
+  }
+  .nav_links li a {
+    padding: 0.5rem 1rem;
+  }
+  .nav_links.active {
+    display: flex;
+  }
+  .navRight.active {
+    display: flex;
+    justify-content: space-around;
+  }
+  .navRightSearch {
+    border-left: none;
+  }
 }

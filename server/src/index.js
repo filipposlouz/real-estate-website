@@ -14,6 +14,20 @@ app.use(cors());
 app.use(express.json()); // req.body
 app.use(fileupload());
 
+const tokens = [];
+
+function setExpiration(array, itemIndex, delay) {
+  setTimeout(() => array.splice(itemIndex, 1), delay);
+}
+
+function removeItemOnce(arr, value) {
+  var index = arr.indexOf(value);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
+}
+
 // Get all properties from db
 app.get("/properties", async (req, res) => {
   try {
@@ -101,6 +115,8 @@ app.post("/login", async (req, res) => {
                 if (err) {
                   console.log(err);
                 }
+                tokens.push(Id + hash);
+                setExpiration(tokens, tokens.indexOf(Id + hash), 1200000);
                 res.status(200).json({ success: true, id: Id + hash });
               }
             );
@@ -109,6 +125,41 @@ app.post("/login", async (req, res) => {
       );
     } else {
       res.send({ success: false, message: "Wrong username or password." });
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.post("/logout", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await pool.query(
+      `SELECT * FROM "Users" WHERE "username" = '${username}';`
+    );
+    if (user.rows.length > 0) {
+      bcrypt.compare(
+        password,
+        user.rows[0].password,
+        async (error, response) => {
+          if (response) {
+            const { Id } = user.rows[0];
+            await bcrypt.hash(
+              user.rows[0].username + Id,
+              saltRounds,
+              (err, hash) => {
+                if (err) {
+                  console.log(err);
+                }
+                removeItemOnce(tokens, Id + hash);
+                res.status(200).json({ success: true });
+              }
+            );
+          }
+        }
+      );
+    } else {
+      res.send({ success: false, message: "Bad Credentials." });
     }
   } catch (err) {
     console.error(err.message);
@@ -150,6 +201,8 @@ app.post("/register", async (req, res) => {
           if (err) {
             console.error(err);
           }
+          tokens.push(id.rows[0].Id + hash);
+          setExpiration(tokens, tokens.indexOf(id.rows[0].Id + hash), 1200000);
           res.send({ success: true, id: id.rows[0].Id + hash });
         }
       );
@@ -165,6 +218,77 @@ app.post("/verify", async (req, res) => {
     if (hash === null) {
       res.send({ success: true, role: "Basic" });
     } else {
+      if (tokens.indexOf(hash) !== -1) {
+        const id = hash.split("$")[0];
+        hash = hash.replace(id, "");
+        const user = await pool.query(
+          `SELECT * FROM "Users" WHERE "Id" = '${id}'`
+        );
+        bcrypt.compare(
+          user.rows[0].username + id,
+          hash,
+          async (err, response) => {
+            if (response) {
+              const role = await pool.query(
+                `SELECT * FROM "Admin" WHERE "Id" = '${id}'`
+              );
+              if (role.rows.length > 0) {
+                res.send({ success: true, role: "Admin" });
+              } else {
+                res.send({ success: true, role: "Basic" });
+              }
+            }
+          }
+        );
+      } else {
+        res.status(401).json({ message: "Unauthorized." });
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+app.post("/property/pending", async (req, res) => {
+  try {
+    let { hash } = req.body;
+    if (tokens.indexOf(hash) !== -1) {
+      const id = hash.split("$")[0];
+      hash = hash.replace(id, "");
+      const user = await pool.query(
+        `SELECT * FROM "Users" WHERE "Id" = '${id}'`
+      );
+      const admin = await pool.query(
+        `SELECT * FROM "Admin" WHERE "Id"='${id}'`
+      );
+      if (admin.rows.length > 0) {
+        bcrypt.compare(
+          user.rows[0].username + id,
+          hash,
+          async (err, response) => {
+            if (response) {
+              const pending = await pool.query(
+                'SELECT "Property"."Id","Property"."nameOfOwner", "Property"."phoneOfOwner", "Property"."province", "Property"."placeInTown", "Property"."town", "Property"."address", "Property"."toSell", "Property"."squareMeters", "Property"."description", "Property"."price", "Property"."typeOfProperty", "Property"."numOfRooms", "Property"."Id_request" FROM "Property", "Request" WHERE "Request"."Id" = "Property"."Id_request" AND "Request"."Pending" = TRUE;'
+              );
+              res.status(200).json(pending.rows);
+            }
+          }
+        );
+      } else {
+        res.json({ message: "Bad credentials" });
+      }
+    } else {
+      res.status(401).json({ message: "Unauthorized." });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+app.post("/mylistings", async (req, res) => {
+  try {
+    let { hash } = req.body;
+    if (tokens.indexOf(hash) !== -1) {
       const id = hash.split("$")[0];
       hash = hash.replace(id, "");
       const user = await pool.query(
@@ -175,65 +299,16 @@ app.post("/verify", async (req, res) => {
         hash,
         async (err, response) => {
           if (response) {
-            const role = await pool.query(
-              `SELECT * FROM "Admin" WHERE "Id" = '${id}'`
+            const datamyProperties = await pool.query(
+              `SELECT * FROM "Property" WHERE "id_basic"='${id}'`
             );
-            if (role.rows.length > 0) {
-              res.send({ success: true, role: "Admin" });
-            } else {
-              res.send({ success: true, role: "Basic" });
-            }
-          }
-        }
-      );
-    }
-  } catch (err) {
-    console.error(err);
-  }
-});
-
-app.post("/property/pending", async (req, res) => {
-  try {
-    let { hash } = req.body;
-    const id = hash.split("$")[0];
-    hash = hash.replace(id, "");
-    const user = await pool.query(`SELECT * FROM "Users" WHERE "Id" = '${id}'`);
-    const admin = await pool.query(`SELECT * FROM "Admin" WHERE "Id"='${id}'`);
-    if (admin.rows.length > 0) {
-      bcrypt.compare(
-        user.rows[0].username + id,
-        hash,
-        async (err, response) => {
-          if (response) {
-            const pending = await pool.query(
-              'SELECT "Property"."Id","Property"."nameOfOwner", "Property"."phoneOfOwner", "Property"."province", "Property"."placeInTown", "Property"."town", "Property"."address", "Property"."toSell", "Property"."squareMeters", "Property"."description", "Property"."price", "Property"."typeOfProperty", "Property"."numOfRooms", "Property"."Id_request" FROM "Property", "Request" WHERE "Request"."Id" = "Property"."Id_request" AND "Request"."Pending" = TRUE;'
-            );
-            res.status(200).json(pending.rows);
+            res.status(200).json(datamyProperties.rows);
           }
         }
       );
     } else {
-      res.json({ message: "Bad credentials" });
+      res.status(401).json({ message: "Unauthorized." });
     }
-  } catch (err) {
-    console.error(err);
-  }
-});
-
-app.post("/mylistings", async (req, res) => {
-  try {
-    let { hash } = req.body;
-    const id = hash.split("$")[0];
-    hash = hash.replace(id, "");
-    const user = await pool.query(`SELECT * FROM "Users" WHERE "Id" = '${id}'`);
-    bcrypt.compare(user.rows[0].username + id, hash, async (err, response) => {
-      if (response) {
-        const datamyProperties = await pool.query(
-          `SELECT * FROM "Property" WHERE "id_basic"='${id}'`
-        );
-        res.status(200).json(datamyProperties.rows);
-      }
-    });
   } catch (err) {
     console.error(err);
   }
@@ -242,44 +317,54 @@ app.post("/mylistings", async (req, res) => {
 app.post("/createListings", async (req, res) => {
   try {
     let { hash } = req.body;
-    const id = hash.split("$")[0];
-    hash = hash.replace(id, "");
-    const user = await pool.query(`SELECT * FROM "Users" WHERE "Id" = '${id}'`);
-    bcrypt.compare(user.rows[0].username + id, hash, async (err, response) => {
-      if (response) {
-        const {
-          nameOfOwner,
-          phoneOfOwner,
-          province,
-          town,
-          placeInTown,
-          address,
-          toSell,
-          squareMeters,
-          description,
-          price,
-          typeOfProperty,
-          numOfRooms,
-          numOfFloors,
-        } = req.body;
+    if (tokens.indexOf(hash) !== -1) {
+      const id = hash.split("$")[0];
+      hash = hash.replace(id, "");
+      const user = await pool.query(
+        `SELECT * FROM "Users" WHERE "Id" = '${id}'`
+      );
+      bcrypt.compare(
+        user.rows[0].username + id,
+        hash,
+        async (err, response) => {
+          if (response) {
+            const {
+              nameOfOwner,
+              phoneOfOwner,
+              province,
+              town,
+              placeInTown,
+              address,
+              toSell,
+              squareMeters,
+              description,
+              price,
+              typeOfProperty,
+              numOfRooms,
+              numOfFloors,
+            } = req.body;
 
-        await pool.query(
-          `INSERT INTO "Request" ("Pending","Id_basic") values (true,${id})`
-        );
+            await pool.query(
+              `INSERT INTO "Request" ("Pending","Id_basic") values (true,${id})`
+            );
 
-        const id_request = await pool.query(
-          `SELECT * FROM "Request" WHERE "Id_basic" = '${id}' and "Pending"=true ORDER BY "Id" DESC;`
-        );
+            const id_request = await pool.query(
+              `SELECT * FROM "Request" WHERE "Id_basic" = '${id}' and "Pending"=true ORDER BY "Id" DESC;`
+            );
 
-        await pool.query(`INSERT INTO "Property" ("nameOfOwner","phoneOfOwner","town","placeInTown","province","address","toSell","squareMeters","description","price","typeOfProperty","numOfRooms","Id_request","id_basic","numOfFloors") VALUES 
-        ('${nameOfOwner}', '${phoneOfOwner}', '${town}', '${placeInTown}', '${province}', '${address}', ${toSell}, ${squareMeters}, '${description}', ${price}, '${typeOfProperty}', ${numOfRooms}, ${id_request.rows[0].Id}, ${id}, ${numOfFloors});`);
+            await pool.query(`INSERT INTO "Property" ("nameOfOwner","phoneOfOwner","town","placeInTown","province","address","toSell","squareMeters","description","price","typeOfProperty","numOfRooms","Id_request","id_basic","numOfFloors") VALUES 
+            ('${nameOfOwner}', '${phoneOfOwner}', '${town}', '${placeInTown}', '${province}', '${address}', ${toSell}, ${squareMeters}, '${description}', ${price}, '${typeOfProperty}', ${numOfRooms}, ${id_request.rows[0].Id}, ${id}, ${numOfFloors});`);
 
-        const houseId = await pool.query(
-          `SELECT * FROM "Property" WHERE "id_basic" = ${id} AND "Id_request" = ${id_request.rows[0].Id}`
-        );
-        res.status(200).json({ success: true, id: houseId.rows[0].Id });
-      }
-    });
+            const houseId = await pool.query(
+              `SELECT * FROM "Property" WHERE "id_basic" = ${id} AND "Id_request" = ${id_request.rows[0].Id}`
+            );
+            res.status(200).json({ success: true, id: houseId.rows[0].Id });
+          }
+        }
+      );
+    } else {
+      res.status(401).json({ message: "Unauthorized." });
+    }
   } catch (err) {
     console.error(err);
   }
