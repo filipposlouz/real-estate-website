@@ -7,17 +7,24 @@
     <title>Login</title>
 
     <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/register.css" />
     <!-- <script type="text/javascript" src="../src/basicAuth.js"></script> -->
     <script type="text/javascript" src="../src/allpages.js" defer></script>
     <script type="text/javascript" src="../src/register.js" defer></script>
   </head>
   <body>
-    <div class="header">
+  <div class="header">
+    <nav>
       <div class="logo">
         <a href="index.html"><img src="../images/logo.png" alt="logo_pic" /></a>
       </div>
-      <nav>
-        <ul class="nav_links">
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div class="nav_links">
+        <ul>
           <li>
             <div class="dropdown">
               <button class="dropbtn">Email</button>
@@ -50,26 +57,31 @@
               </button>
             </div>
           </li>
-        </ul>
-      </nav>
-      <div class="navRight">
-        <ul class="loginLogout">
-          <li><a href="#">Είσοδος/Εγγραφή</a></li>
-        </ul>
-        <div class="search">
-          <div class="textfield">
-            <input
-              type="text"
-              id="kodikos"
-              name="kodikos"
-              placeholder="Κωδικός Ακινήτου"
-            />
-          </div>
-          <button class="srchbutton">Εύρεση</button>
-        </div>
+          <li>
+            <!-- <ul class="loginLogout"> -->
+            <!-- <li> -->
+  
+            <div class="dropdown">
+              <button class="dropbtn">
+                <a href="#" class="loginLogout">Είσοδος/Εγγραφή</a>
+              </button>
+            </div>
+          </li>
+          <li class="navRightSearch">
+            <div class="dropdown">
+              <button class="dropbtn">
+                <input type="text" id="kodikos" name="kodikos" placeholder="Κωδικός Ακινήτου" />
+            </div>
+            <button class="srchbutton">Εύρεση</button>
+            </button>
       </div>
-    </div>
-    <div class="loginPage">
+      </li>
+      </ul>
+  </div>
+  </nav>
+  </div>
+    <div class="register_container">
+    <div class="registerPage">
       <label for="email">Email:</label>
       <input type="text" class="email" /><br />
       <label for="username">Username:</label>
@@ -78,7 +90,11 @@
       <input type="password" class="password" /><br />
       <label for="password">Repeat Password:</label>
       <input type="password" class="repeatPassword" /><br />
+      
+      <div class="submit_container">
       <button class="submitRegister">Register</button>
+      </div>
+    </div>
     </div>
   </body>
 </html>

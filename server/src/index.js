@@ -212,6 +212,24 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.post("/interested", async (req, res) => {
+  try {
+    const { fullName, phoneNumber, email, houseId } = req.body;
+    await pool.query(
+      `INSERT INTO "Interested" ("phone", "email", "name") VALUES ('${phoneNumber}', '${email}', '${fullName}')`
+    );
+    const interestedId = await pool.query(
+      `SELECT * FROM "Interested" WHERE "phone" = '${phoneNumber}' AND "email"= '${email}' AND "name" = '${fullName}';`
+    );
+    await pool.query(
+      `INSERT INTO "isInterested" ("Id_ofInterested", "Id_property") VALUES (${interestedId.rows[0].Id}, ${houseId})`
+    );
+    res.status(200).json({ success: true });
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 app.post("/verify", async (req, res) => {
   try {
     let { hash } = req.body;
@@ -437,6 +455,7 @@ app.get("/property/:id/pending", async (req, res) => {
 app.delete("/property/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    await pool.query(`DELETE FROM "isInterested" WHERE "Id_property" = ${id}`);
     const deleteProperty = await pool.query(
       `DELETE FROM "Property" WHERE "Id" = ${id}`
     );

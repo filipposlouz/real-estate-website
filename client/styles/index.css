@@ -13,10 +13,11 @@
 /* ------------>SEARCH FIELD<------------ */
 
 .search_bar h3 {
-  display: flex;
-  justify-content: center;
-
-  margin: 0 200px;
+  
+  max-width: 90%;
+  margin: 0 auto;
+  min-width: 77.5%;
+  text-align: center;
   padding: 15px 0;
   background-color: rgba(0, 136, 169, 1);
   color: white;
@@ -24,12 +25,23 @@
   border-right: 3.5px solid rgb(139, 138, 138);
   border-left: 3.5px solid rgb(139, 138, 138);
 }
+.search_bar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .search_bar fieldset {
-  display: grid;
+  padding-left: 14px;
+  padding-right: 14px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 0 200px;
+  max-width: 80%;
+  min-width: 77.5%;
   background-color: #f3f3f3;
+  justify-content: space-around;
 }
 
 .search_bar select {
@@ -43,18 +55,14 @@
 
 /* ------------>FIRST COLUMN<------------ */
 
-.search_bar fieldset .first_column {
-  padding-left: 30px;
-}
 
-.search_bar .first_column .price {
+
+.search_bar .first_column  {
   display: flex;
+  flex-direction: column;
 }
 
-.search_bar .first_column .price .to {
-  padding-left: 60px;
-  /* padding-right: 0px; */
-}
+
 
 .search_bar .first_column {
   margin-top: 6px;
@@ -66,14 +74,12 @@
 
 /* ------------>SECOND COLUMN<------------ */
 
-.search_bar .second_column .spaceSize {
+.search_bar .second_column  {
   display: flex;
+  flex-direction: column;
 }
 
-.search_bar .second_column .spaceSize .to {
-  padding-left: 60px;
-  /* padding-right: 50px !important; */
-}
+
 
 .search_bar .second_column {
   margin-top: 6px;

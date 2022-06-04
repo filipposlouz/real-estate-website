@@ -1,5 +1,9 @@
 // Selectors
 const listings = document.querySelector(".property");
+const email = document.querySelector("#email");
+const fullname = document.querySelector("#fullName");
+const phoneNumber = document.querySelector("#phoneNumber");
+const sendButton = document.querySelector(".sendButton");
 
 const titleTranslation = {
   oneFloor: "Μονοκατοικία",
@@ -145,4 +149,27 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   column.appendChild(outsideContainer);
   outsideColumn.appendChild(column);
   listings.appendChild(outsideColumn);
+});
+
+sendButton.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const houseId = new URLSearchParams(window.location.search).get("propertyId");
+  const data = {
+    fullName: fullName.value,
+    phoneNumber: phoneNumber.value,
+    email: email.value,
+    houseId: houseId,
+  };
+  await fetch("http://localhost:3000/interested", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify(data),
+  });
+  fullname.value = "";
+  phoneNumber.value = "";
+  email.value = "";
+  window.location.reload();
 });

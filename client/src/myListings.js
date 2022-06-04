@@ -159,6 +159,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       ).then((res) => res.json());
       if (isPending.pending === true) {
         const pending = document.createElement("button");
+        pending.setAttribute("class","pendingBtn")
         pending.innerText = "Εκκρεμεί έγκριση";
         textContainer.appendChild(pending);
       }

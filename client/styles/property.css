@@ -2,6 +2,10 @@
   text-align: center;
   display: inline;
 } */
+.property {
+  padding-top: 5%;
+  min-width: 80%;
+}
 
 .outsideColumn {
   width: 70%;
@@ -64,11 +68,6 @@
   margin-top: 30%;
 }
 
-/* .textContainer button {
-  position: fixed;
-  bottom: 5%;
-} */
-
 .textContainer p:nth-last-child(2) {
   padding-top: 1%;
   padding-bottom: 1%;
@@ -77,4 +76,42 @@
 .textContainer h4 a {
   text-decoration: none;
   color: rgb(54, 54, 54);
+}
+
+.pageContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 90%;
+}
+
+aside {
+  max-width: 30%;
+  margin-top: 7%;
+}
+
+aside p {
+  margin-bottom: 10px;
+  border-bottom: 3px solid grey;
+}
+
+aside fieldset {
+  border-color: white;
+  border-radius: 4px;
+  background-color: rgb(246, 245, 245);
+  display: flex;
+  flex-direction: column;
+}
+
+aside fieldset div {
+  padding: 10px 5px;
+}
+
+aside fieldset button {
+  padding: 5px;
+  border: 1.5px solid black;
+  border-radius: 4px;
+  background-color: rgba(0, 136, 169, 1);
+  color: white;
+  font-weight: bold;
 }

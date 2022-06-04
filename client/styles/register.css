@@ -1,0 +1,43 @@
+.registerPage input[type="text"],
+input[type="password"] {
+    width: inherit;
+    padding: 10px 10px;
+    margin: 8px 0;
+    
+
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.registerPage {
+    display: flex;
+    flex-direction: column;
+    
+   
+}
+.register_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+
+
+.submitRegister {
+    padding-left: 6%;
+}
+.submitRegister {
+    background-color: #0088a9;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 70%;
+}
+.submit_container{
+    width: inherit;
+    display: flex;
+    justify-content: center;
+}

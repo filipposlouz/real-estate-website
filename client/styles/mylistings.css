@@ -20,6 +20,11 @@
   grid-template-columns: 1fr 2fr;
 }
 
+.Listings_button{
+  padding-top: 6%;
+
+}
+
 .imageContainer {
   position: relative;
   text-align: center;
@@ -55,10 +60,7 @@
   margin-top: 1%;
 }
 
-.textContainer p:nth-last-child(2) {
-  /* position: fixed; */
-  margin-top: 10%;
-}
+
 
 .textContainer h4 a {
   text-decoration: none;
@@ -106,17 +108,67 @@
   background-color: #5cb85c;
   color: white;
 }
+.createListing{
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+.outsideColumn .textContainer .deleteProperty{
+  margin-top: 80px;
+  margin-right: 7px;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(255, 0, 0, 0.786);
+  border-radius: 4px;
+  border-color: red;
+  
 
+}
+.outsideColumn .textContainer .pendingBtn {
+  margin-top: 80px;
+  margin-right: 7px;
+  color: white;
+  font-weight: bold;
+  background-color:grey;
+  border-radius: 4px;
+  border-color:grey
+
+
+
+}
+.modal{
+  min-width: 400px;
+}
+
+.createListing button {
+  padding: 10px 20px;
+  color: #fefefe;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  margin-bottom: 15px;
+}
 /* Modal Body */
 .modal-body {
   padding: 2px 16px;
 }
 
 /* Modal Footer */
-.modal-footer {
+.modal-footer button {
   padding: 2px 16px;
-  background-color: #5cb85c;
   color: white;
+  font-weight: bold;
+  background-color: green;
+  border-radius: 4px;
+  border-color: green
+}
+.modal-footer{
+  padding-top: 2px;
+  padding-bottom: 4px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Modal Content */
@@ -126,12 +178,23 @@
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-name: animatetop;
   animation-duration: 0.4s;
 }
+.modal fieldset{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.modal .location_container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
+}
 /* Add Animation */
 @keyframes animatetop {
   from {
@@ -144,3 +207,23 @@
     opacity: 1;
   }
 }
+
+.modal-header{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-size: larger;
+  font-weight: bold;
+  background-color:rgba(0, 136, 169, 1) ;
+}
+.modal-body fieldset div{
+  padding: 4px 4px;
+}
+/* .modal-body fieldset{
+  display: flex;
+
+} */
+/* .modal-body .location_container{
+  display: flex;
+  justify-content: space-between;
+} */

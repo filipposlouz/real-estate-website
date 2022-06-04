@@ -8,6 +8,7 @@ const registerBtn = document.querySelector(".submitRegister");
 // Event Listeners
 loginBtn.addEventListener("click", async (e) => {
   const data = { username: username.value, password: password.value };
+  console.log(data);
   const res = await fetch("http://localhost:3000/login", {
     method: "POST",
     headers: {
