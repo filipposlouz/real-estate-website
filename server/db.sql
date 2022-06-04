@@ -5,7 +5,7 @@
 -- Dumped from database version 14.1
 -- Dumped by pg_dump version 14.1
 
--- Started on 2022-06-05 02:06:20
+-- Started on 2022-06-05 02:13:10
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -51,7 +51,7 @@ CREATE SEQUENCE public."Admin_Id_seq"
 ALTER TABLE public."Admin_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3375 (class 0 OID 0)
+-- TOC entry 3362 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: Admin_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -88,7 +88,7 @@ CREATE SEQUENCE public."Basic_Id_seq"
 ALTER TABLE public."Basic_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3376 (class 0 OID 0)
+-- TOC entry 3363 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: Basic_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -128,7 +128,7 @@ CREATE SEQUENCE public."Interested_Id_seq"
 ALTER TABLE public."Interested_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3377 (class 0 OID 0)
+-- TOC entry 3364 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: Interested_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -184,7 +184,7 @@ CREATE SEQUENCE public."Property_Id_seq"
 ALTER TABLE public."Property_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3378 (class 0 OID 0)
+-- TOC entry 3365 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: Property_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -223,7 +223,7 @@ CREATE SEQUENCE public."Request_Id_seq"
 ALTER TABLE public."Request_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3379 (class 0 OID 0)
+-- TOC entry 3366 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: Request_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -263,7 +263,7 @@ CREATE SEQUENCE public."Users_Id_seq"
 ALTER TABLE public."Users_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3380 (class 0 OID 0)
+-- TOC entry 3367 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: Users_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -330,211 +330,6 @@ ALTER TABLE ONLY public."Request" ALTER COLUMN "Id" SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public."Users" ALTER COLUMN "Id" SET DEFAULT nextval('public."Users_Id_seq"'::regclass);
-
-
---
--- TOC entry 3360 (class 0 OID 16806)
--- Dependencies: 212
--- Data for Name: Admin; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."Admin" ("Id") FROM stdin;
-1
-\.
-
-
---
--- TOC entry 3362 (class 0 OID 16813)
--- Dependencies: 214
--- Data for Name: Basic; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."Basic" ("Id") FROM stdin;
-2
-10
-11
-13
-\.
-
-
---
--- TOC entry 3368 (class 0 OID 16836)
--- Dependencies: 220
--- Data for Name: Interested; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."Interested" ("Id", phone, email, name) FROM stdin;
-1	1232113	asdf@aaa	asdf
-2	1232113	asdf@aaa	asdf
-3	1232113	asdf@aaa	asdf
-4	1232113	asdf@aaa	asdf
-5	1232113	asdf@aaa	asdf
-6	1232113	asdf@aaa	asdf
-7	1232113	asdf@aaa	asdf
-8	1232113	asdf@aaa	asdf
-9	1232113	asdf@aaa	asdf
-10	1232113	asdf@aaa	asdf
-11	1232113	asdf@aaa	asdf
-12	1232113	asdf@aaa	asdf
-13	1232113	asdf@aaa	asdf
-14	1232113	asdf@aaa	asdf
-15	1232113	asdf@aaa	asdf
-16	1232113	asdf@aaa	asdf
-17	1232113	asdf@aaa	asdf
-18	1232113	asdf@aaa	asdf
-19	1232113	asdf@aaa	asdf
-20	1232113	asdf@aaa	asdf
-21	1232113	asdf@aaa	asdf
-22	123133	asd@a	asdf
-23	123414	asdf@a	asdf
-\.
-
-
---
--- TOC entry 3366 (class 0 OID 16827)
--- Dependencies: 218
--- Data for Name: Property; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."Property" ("Id", "nameOfOwner", "phoneOfOwner", "ownershipFile", province, "placeInTown", town, address, "toSell", "squareMeters", description, price, "typeOfProperty", "numOfRooms", review, "housePictures", "Id_request", id_basic, "numOfFloors", id_admin) FROM stdin;
-77	john doe	6944444444	\N	achaia	krhnh	messatida	Σοφια 6	t	280	Αποτελείται από 6 υπνοδωμάτια, 2 σαλόνια, 2 κουζίνες, 2 μπάνια και WC. Είναι κατασκευασμένη το 2002 και διαθέτει θέρμανση αυτόνομη - πετρελαίου, απεριόριστη θέα, κουφώματα αλουμινίου, πατώματα από πλακάκι, εντοιχιζόμενες ντουλάπες, πρόσβαση ΑΜΕΑ, πάρκινγκ, αποθήκη 5 τ.μ., κήπο, τζάκι, A/C, συναγερμό, τέντες, σίτες, διπλά τζάμια, ηλιακό θερμοσίφωνα, Boiler, σκαλιά εισόδου, νυχτερινό ρεύμα, ανοιχτωσιά, εσωτερική σκάλα, μπαλκόνια 60 τ.μ. απόσταση από θάλασσα 4000 μέτρα.	350000	oneFloor	12	\N	\N	88	2	0	\N
-79	john	694444444	\N	aitoliaAkarnania	kentro	amfiloxia	Μαρια 23	f	46	Ανακαινισμένη γκαρσονιέρα/studio συνολικής επιφάνειας 46 τ.μ. 1ος υπερυψωμένος . Αποτελείται από 1 υπνοδωμάτιο, σαλοκουζίνα, μπάνιο . Είναι κατασκευασμένη το 1977 και διαθέτει θέρμανση κεντρική - πετρέλαιο, κουφώματα αλουμινίου, ξύλινα πατώματα, πόρτα ασφαλείας, εντοιχιζόμενες ντουλάπες, ανελκυστήρα, A/C, έπιπλα, ηλεκτρικές συσκευές, διπλά τζάμια, ανοιχτωσιά, μπαλκόνια 10 τ.μ. απόσταση από θάλασσα 400 μέτρα.	650	studio	2	\N	\N	90	2	1	\N
-80	john	694444444	\N	fokida	agiosNikolaos	tolofwno	Κωσταντινουπουλοως 23	t	90	Νεόδμητο διαμέρισμα συνολικής επιφάνειας 90 τ.μ. στον 2 ο όροφο . Αποτελείται από 2 υπνοδωμάτια, σαλόνι, κουζίνα, μπάνιο . Είναι κατασκευασμένο το 2010 με ενεργειακή κλάση Α και διαθέτει θέρμανση ατομική - πετρέλαιο, θέα σε πάρκο, κουφώματα αλουμινίου, πατώματα από πλακάκι, πόρτα ασφαλείας, εντοιχιζόμενες ντουλάπες, ανελκυστήρα, πρόσβαση ΑΜΕΑ, 2 κλειστά γκαράζ , τζάκι, A/C, έπιπλα, ηλεκτρικές συσκευές, τέντες, σίτες, διπλά τζάμια, ηλιακό θερμοσίφωνα, νυχτερινό ρεύμα, ανοιχτωσιά, μπαλκόνια 25 τ.μ. απόσταση από θάλασσα 1500 μέτρα.	230000	flat	5	\N	\N	91	2	2	\N
-81	γιαννης	69444444	\N	achaia	alsos	aigialia	Σοφία 1	f	120	Διαμέρισμα συνολικής επιφάνειας 120 τ.μ. στον 3 ο όροφο . Αποτελείται από 3 υπνοδωμάτια, σαλόνι, κουζίνα, μπάνιο . Είναι κατασκευασμένο το 1980 και διαθέτει θέρμανση κεντρική - πετρέλαιο, απεριόριστη θέα, κουφώματα ξύλινα, πατώματα από πλακάκι, ντουλάπες, ανελκυστήρα, πρόσβαση ΑΜΕΑ, A/C, σκαλιά εισόδου, ανοιχτωσιά, μπαλκόνια 13 τ.μ. απόσταση από θάλασσα 350 μέτρα.	500	flat	6	\N	\N	92	2	3	\N
-\.
-
-
---
--- TOC entry 3364 (class 0 OID 16820)
--- Dependencies: 216
--- Data for Name: Request; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."Request" ("Id", "Pending", "Id_basic") FROM stdin;
-59	t	2
-60	t	2
-61	t	2
-62	t	2
-63	t	2
-64	t	2
-65	t	2
-66	t	2
-67	t	2
-68	t	2
-71	f	2
-70	f	2
-69	f	2
-73	t	2
-74	t	2
-76	t	2
-77	t	2
-78	t	2
-79	t	2
-80	t	2
-81	f	2
-75	f	2
-82	f	2
-83	f	2
-84	f	2
-85	f	2
-86	t	2
-87	t	2
-88	f	2
-89	f	2
-90	f	2
-91	f	2
-92	t	2
-54	t	2
-55	t	2
-56	t	2
-57	t	2
-58	t	2
-\.
-
-
---
--- TOC entry 3358 (class 0 OID 16799)
--- Dependencies: 210
--- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."Users" ("Id", email, username, password) FROM stdin;
-1	admin@gmail.com	admin	$2b$10$XwRzGy2OqKo28NbBfb.OveQPIEG.jcP7xZjR2M5EblDcUEhFg47fa
-2	johndoe@gmail.com	johndoe	$2b$10$QNjBa/LK97z7qYniSoLGgO7Gp0LRS85vhy47swMhEjS4OmapNv9Zi
-3	test@test.com	test	$2b$10$eoHOm.kPesikCuf3bdeOp.GIBh4PoG8W7t9vtIWJTBXJQmkYT06MO
-4	test1@test.com	test1	$2b$10$XWYYA5YNgmjcnA5Ap2Vcd.uXpo55Rgas1nmRKapdg9n81R5siS4hC
-5	test2@test.com	test2	$2b$10$gkOG94cZn5xYlEV08CVQ3.ZcFE6uIpuV/guiJVRZ/MjfO/EujgPuK
-6	test3@test.com	test3	$2b$10$8Dl8/UuPlxwwqCn712yHoOdrPSy3/RZOXQNP7jmQKXWM/tJZHFsH2
-7	test4@test.com	test4	$2b$10$bhfcRhalTZ28036G5fiSDOUtdN0Skw8PPGmzgL1B.5nivMA5mFdSW
-9	asdf@asdf	asdf	$2b$10$aQwxAvNWR8DEoyf8mfQdveb/o06AiB4TJrVZJ6E2oPfVIijYme5N2
-10	asdf@asdf.com	asdfdf	$2b$10$LOJ7SK8/oyv28J3CSZUvp.7qWXxKkbzk9hBXL6MZrPtXTP9ZB0ynu
-11	asdffff@gmail.com	123	$2b$10$fC75aNGYCpop1Kpu9ZrSvetwO2nWJWUJPmELU514NiuJCFR4GKaP6
-13	w@w	w	$2b$10$1G3yWpu4Rz4g4o0lEGtGyu7ge8BraIG87iKUdsZK7VjSmvtorituK
-\.
-
-
---
--- TOC entry 3369 (class 0 OID 16842)
--- Dependencies: 221
--- Data for Name: isInterested; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."isInterested" ("Id_ofInterested", "Id_property") FROM stdin;
-\.
-
-
---
--- TOC entry 3381 (class 0 OID 0)
--- Dependencies: 211
--- Name: Admin_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Admin_Id_seq"', 1, false);
-
-
---
--- TOC entry 3382 (class 0 OID 0)
--- Dependencies: 213
--- Name: Basic_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Basic_Id_seq"', 1, false);
-
-
---
--- TOC entry 3383 (class 0 OID 0)
--- Dependencies: 219
--- Name: Interested_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Interested_Id_seq"', 23, true);
-
-
---
--- TOC entry 3384 (class 0 OID 0)
--- Dependencies: 217
--- Name: Property_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Property_Id_seq"', 81, true);
-
-
---
--- TOC entry 3385 (class 0 OID 0)
--- Dependencies: 215
--- Name: Request_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Request_Id_seq"', 92, true);
-
-
---
--- TOC entry 3386 (class 0 OID 0)
--- Dependencies: 209
--- Name: Users_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Users_Id_seq"', 13, true);
 
 
 --
@@ -654,9 +449,13 @@ ALTER TABLE ONLY public."isInterested"
     ADD CONSTRAINT "isInterested_fk1" FOREIGN KEY ("Id_property") REFERENCES public."Property"("Id");
 
 
--- Completed on 2022-06-05 02:06:20
+-- Completed on 2022-06-05 02:13:10
 
 --
 -- PostgreSQL database dump complete
 --
 
+INSERT INTO public."Users" ("email", "username", "password") VALUES ('admin@gmail.com', 'admin', '123456789');
+INSERT INTO public."Users" ("email", "username", "password") VALUES ('johndoe@gmail.com', 'johndoe', '12345');
+INSERT INTO public."Admin" ("Id") VALUES (1);
+INSERT INTO public."Basic" ("Id") VALUES (2);
