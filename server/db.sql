@@ -5,7 +5,7 @@
 -- Dumped from database version 14.1
 -- Dumped by pg_dump version 14.1
 
--- Started on 2022-06-05 01:44:35
+-- Started on 2022-06-05 02:06:20
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -398,7 +398,9 @@ COPY public."Interested" ("Id", phone, email, name) FROM stdin;
 
 COPY public."Property" ("Id", "nameOfOwner", "phoneOfOwner", "ownershipFile", province, "placeInTown", town, address, "toSell", "squareMeters", description, price, "typeOfProperty", "numOfRooms", review, "housePictures", "Id_request", id_basic, "numOfFloors", id_admin) FROM stdin;
 77	john doe	6944444444	\N	achaia	krhnh	messatida	Σοφια 6	t	280	Αποτελείται από 6 υπνοδωμάτια, 2 σαλόνια, 2 κουζίνες, 2 μπάνια και WC. Είναι κατασκευασμένη το 2002 και διαθέτει θέρμανση αυτόνομη - πετρελαίου, απεριόριστη θέα, κουφώματα αλουμινίου, πατώματα από πλακάκι, εντοιχιζόμενες ντουλάπες, πρόσβαση ΑΜΕΑ, πάρκινγκ, αποθήκη 5 τ.μ., κήπο, τζάκι, A/C, συναγερμό, τέντες, σίτες, διπλά τζάμια, ηλιακό θερμοσίφωνα, Boiler, σκαλιά εισόδου, νυχτερινό ρεύμα, ανοιχτωσιά, εσωτερική σκάλα, μπαλκόνια 60 τ.μ. απόσταση από θάλασσα 4000 μέτρα.	350000	oneFloor	12	\N	\N	88	2	0	\N
-78	john doe	3694444444	\N	achaia	alsos	aigialia	asdf 1	t	123	asdf	1231233	oneFloor	1	\N	\N	89	2	0	\N
+79	john	694444444	\N	aitoliaAkarnania	kentro	amfiloxia	Μαρια 23	f	46	Ανακαινισμένη γκαρσονιέρα/studio συνολικής επιφάνειας 46 τ.μ. 1ος υπερυψωμένος . Αποτελείται από 1 υπνοδωμάτιο, σαλοκουζίνα, μπάνιο . Είναι κατασκευασμένη το 1977 και διαθέτει θέρμανση κεντρική - πετρέλαιο, κουφώματα αλουμινίου, ξύλινα πατώματα, πόρτα ασφαλείας, εντοιχιζόμενες ντουλάπες, ανελκυστήρα, A/C, έπιπλα, ηλεκτρικές συσκευές, διπλά τζάμια, ανοιχτωσιά, μπαλκόνια 10 τ.μ. απόσταση από θάλασσα 400 μέτρα.	650	studio	2	\N	\N	90	2	1	\N
+80	john	694444444	\N	fokida	agiosNikolaos	tolofwno	Κωσταντινουπουλοως 23	t	90	Νεόδμητο διαμέρισμα συνολικής επιφάνειας 90 τ.μ. στον 2 ο όροφο . Αποτελείται από 2 υπνοδωμάτια, σαλόνι, κουζίνα, μπάνιο . Είναι κατασκευασμένο το 2010 με ενεργειακή κλάση Α και διαθέτει θέρμανση ατομική - πετρέλαιο, θέα σε πάρκο, κουφώματα αλουμινίου, πατώματα από πλακάκι, πόρτα ασφαλείας, εντοιχιζόμενες ντουλάπες, ανελκυστήρα, πρόσβαση ΑΜΕΑ, 2 κλειστά γκαράζ , τζάκι, A/C, έπιπλα, ηλεκτρικές συσκευές, τέντες, σίτες, διπλά τζάμια, ηλιακό θερμοσίφωνα, νυχτερινό ρεύμα, ανοιχτωσιά, μπαλκόνια 25 τ.μ. απόσταση από θάλασσα 1500 μέτρα.	230000	flat	5	\N	\N	91	2	2	\N
+81	γιαννης	69444444	\N	achaia	alsos	aigialia	Σοφία 1	f	120	Διαμέρισμα συνολικής επιφάνειας 120 τ.μ. στον 3 ο όροφο . Αποτελείται από 3 υπνοδωμάτια, σαλόνι, κουζίνα, μπάνιο . Είναι κατασκευασμένο το 1980 και διαθέτει θέρμανση κεντρική - πετρέλαιο, απεριόριστη θέα, κουφώματα ξύλινα, πατώματα από πλακάκι, ντουλάπες, ανελκυστήρα, πρόσβαση ΑΜΕΑ, A/C, σκαλιά εισόδου, ανοιχτωσιά, μπαλκόνια 13 τ.μ. απόσταση από θάλασσα 350 μέτρα.	500	flat	6	\N	\N	92	2	3	\N
 \.
 
 
@@ -439,6 +441,9 @@ COPY public."Request" ("Id", "Pending", "Id_basic") FROM stdin;
 87	t	2
 88	f	2
 89	f	2
+90	f	2
+91	f	2
+92	t	2
 54	t	2
 55	t	2
 56	t	2
@@ -511,7 +516,7 @@ SELECT pg_catalog.setval('public."Interested_Id_seq"', 23, true);
 -- Name: Property_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Property_Id_seq"', 78, true);
+SELECT pg_catalog.setval('public."Property_Id_seq"', 81, true);
 
 
 --
@@ -520,7 +525,7 @@ SELECT pg_catalog.setval('public."Property_Id_seq"', 78, true);
 -- Name: Request_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Request_Id_seq"', 89, true);
+SELECT pg_catalog.setval('public."Request_Id_seq"', 92, true);
 
 
 --
@@ -649,7 +654,7 @@ ALTER TABLE ONLY public."isInterested"
     ADD CONSTRAINT "isInterested_fk1" FOREIGN KEY ("Id_property") REFERENCES public."Property"("Id");
 
 
--- Completed on 2022-06-05 01:44:35
+-- Completed on 2022-06-05 02:06:20
 
 --
 -- PostgreSQL database dump complete
