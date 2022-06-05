@@ -59,10 +59,11 @@ app.post("/propertiesFiltered", async (req, res) => {
        WHERE "Request"."Id" = "Property"."Id_request" AND "Request"."Pending" = FALSE AND
        "Property"."toSell" = ${toSell} AND
        "Property"."typeOfProperty" = '${typeOfProperty}'`;
-    if (province) query = query + ` AND "Property"."province" = '${province}'`;
-    if (town !== "allStates" && town !== "undefined")
+    if (province && province !== "placeholder")
+      query = query + ` AND "Property"."province" = '${province}'`;
+    if (town !== "allStates" && town !== "undefined" && town)
       query = query + ` AND "Property"."town" = '${town}'`;
-    if (placeInTown !== "Όλες οι περιοχές")
+    if (placeInTown !== "Όλες οι περιοχές" && placeInTown)
       query = query + ` AND "Property"."placeInTown" = '${placeInTown}'`;
     if (numOfFloors === 6)
       query = query + ` AND "Property"."numOfFloors" >= ${numOfFloors}`;
