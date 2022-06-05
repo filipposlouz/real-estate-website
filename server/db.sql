@@ -455,7 +455,7 @@ ALTER TABLE ONLY public."isInterested"
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO public."Users" ("email", "username", "password") VALUES ('admin@gmail.com', 'admin', '123456789');
-INSERT INTO public."Users" ("email", "username", "password") VALUES ('johndoe@gmail.com', 'johndoe', '12345');
+INSERT INTO public."Users" ("email", "username", "password") VALUES ('admin@gmail.com', 'admin', '$2b$10$XwRzGy2OqKo28NbBfb.OveQPIEG.jcP7xZjR2M5EblDcUEhFg47fa');
+INSERT INTO public."Users" ("email", "username", "password") VALUES ('johndoe@gmail.com', 'johndoe', '$2b$10$QNjBa/LK97z7qYniSoLGgO7Gp0LRS85vhy47swMhEjS4OmapNv9Zi');
 INSERT INTO public."Admin" ("Id") VALUES (1);
 INSERT INTO public."Basic" ("Id") VALUES (2);
