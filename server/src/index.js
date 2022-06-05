@@ -121,6 +121,11 @@ app.post("/login", async (req, res) => {
                 res.status(200).json({ success: true, id: Id + hash });
               }
             );
+          } else {
+            res.send({
+              success: false,
+              message: "Wrong username or password.",
+            });
           }
         }
       );

@@ -8,7 +8,6 @@ const registerBtn = document.querySelector(".submitRegister");
 // Event Listeners
 loginBtn.addEventListener("click", async (e) => {
   const data = { username: username.value, password: password.value };
-  console.log(data);
   const res = await fetch("http://localhost:3000/login", {
     method: "POST",
     headers: {
@@ -20,10 +19,8 @@ loginBtn.addEventListener("click", async (e) => {
   if (res.success === true) {
     localStorage.setItem("id", res.id);
     window.location.href = "index.html";
-    // console.log(localStorage.getItem("id"));
-    // MAKE MODAL TO DISPLAY IF INFO WAS WRONG
   } else {
-    console.log(res.message);
+    alert("Wrong Credentials.");
   }
 });
 
